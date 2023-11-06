@@ -1,7 +1,7 @@
 {
-  "name": "front-library",
+  "name": "sptech-toolkit",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -43,5 +43,9 @@
   },
   "sideEffects": [
     "**/*.css"
-  ]
+  ],
+  "exports": {
+    ".": "./dist/main.js",
+    "./dist/button": "./dist/button/main.js"
+  }
 }

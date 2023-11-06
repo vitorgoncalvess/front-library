@@ -1,3 +1,3 @@
 import "./index.css";
 
-export { Button } from "./components/Button";
+export { Button } from "./button/Button";

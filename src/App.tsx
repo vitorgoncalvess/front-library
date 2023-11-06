@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../lib/components/Button";
+import { Button } from "../lib/button/Button";
 
 function App() {
   const [data, setData] = useState("");
