@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariants = tv({
-  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95",
+  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullWidth=true]:w-full",
   variants: {
     color: {
       default: "",
@@ -41,6 +41,7 @@ const buttonVariants = tv({
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   isLoading?: boolean;
+  fullWidth?: boolean;
   isIconOnly?: boolean;
   isDisabled?: boolean;
   loadingMessage?: string;
@@ -62,6 +63,7 @@ export const Button = ({
   onClick,
   size = "xs",
   className = "",
+  fullWidth = false,
   radius = "xl",
   isDisabled = false,
   isLoading = false,
@@ -81,6 +83,7 @@ export const Button = ({
       data-variant={variant}
       data-loading={isLoading}
       data-icon={isIconOnly}
+      data-fullWidth={fullWidth}
       onClick={onClick}
       className={twMerge(
         buttonVariants({

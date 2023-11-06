@@ -16,10 +16,13 @@ function App() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Button
-        isLoading={isLoading}
-        onClick={fetchData}
         color="primary"
-      ></Button>
+        onClick={fetchData}
+        isLoading={isLoading}
+        loadingMessage="Procurando..."
+      >
+        Procurar
+      </Button>
       {data && data}
     </div>
   );
