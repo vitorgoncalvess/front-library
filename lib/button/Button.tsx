@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariants = tv({
-  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullWidth=true]:w-full",
+  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullWidth=true]:w-full data-[success=true]:bg-emerald-400",
   variants: {
     color: {
       default: "",
@@ -45,6 +45,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   isIconOnly?: boolean;
   isDisabled?: boolean;
   loadingMessage?: string;
+  successMessage?: string;
   variant?: "ghost" | "base";
   showLoadingSpinner?: boolean;
   size?: "xs" | "sm" | "md" | "lg";
@@ -73,6 +74,7 @@ export const Button = ({
   startContent,
   endContent,
   spinner,
+  successMessage,
   isIconOnly = false,
   ...props
 }: Props) => {
@@ -84,6 +86,7 @@ export const Button = ({
       data-loading={isLoading}
       data-icon={isIconOnly}
       data-fullWidth={fullWidth}
+      data-success={Boolean(successMessage)}
       onClick={onClick}
       className={twMerge(
         buttonVariants({
@@ -104,7 +107,11 @@ export const Button = ({
           <div className="animate-spin border-2 border-white group-data-[variant=ghost]:border-black h-4 w-4 rounded-full border-t-transparent group-data-[variant=ghost]:border-t-transparent group-data-[variant=ghost]:border-opacity-70"></div>
         ))}
       {startContent && <span>{startContent}</span>}
-      {isLoading && loadingMessage ? loadingMessage : children}
+      {isLoading && loadingMessage
+        ? loadingMessage
+        : successMessage
+        ? successMessage
+        : children}
       {endContent && <span>{endContent}</span>}
     </button>
   );
