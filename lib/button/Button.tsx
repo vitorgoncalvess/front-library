@@ -1,14 +1,9 @@
-import {
-  ButtonHTMLAttributes,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { ButtonHTMLAttributes, MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariants = tv({
-  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullWidth=true]:w-full data-[success=true]:bg-emerald-400",
+  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullwidth=true]:w-full data-[success=true]:bg-emerald-400",
   variants: {
     color: {
       default: "",
@@ -36,9 +31,9 @@ const buttonVariants = tv({
       full: "rounded-full",
     },
     variant: {
-      base: "hover:opacity-80 data-[disabled=true]:opacity-50 ",
+      base: "hover:opacity-80 data-[disabled=true]:opacity-70",
       ghost:
-        "bg-opacity-0 data-[disabled=false]:hover:bg-opacity-100 data-[disabled=false]:data-[variant=ghost]:hover:text-white border-[2px] py-1.5 px-3.5 data-[disabled=true]:opacity-50",
+        "bg-opacity-0 data-[disabled=false]:hover:bg-opacity-100 data-[disabled=false]:data-[variant=ghost]:hover:text-white border-[2px] py-1.5 px-3.5 data-[disabled=true]:opacity-70",
     },
   },
 });
@@ -83,37 +78,16 @@ export const Button = ({
   isIconOnly = false,
   ...props
 }: Props) => {
-  const [loading, setLoading] = useState(isLoading);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (loading) return;
-
-    setLoading(true);
-    if (onClick) onClick(e);
-  };
-
-  useEffect(() => {
-    if (!isLoading) {
-      setLoading(false);
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (success !== undefined || !isLoading) {
-      setLoading(false);
-    }
-  }, [success, isLoading]);
-
   return (
     <button
-      disabled={isDisabled || loading || Boolean(success)}
-      data-disabled={isDisabled || loading || success}
+      disabled={isDisabled || isLoading || Boolean(success)}
+      data-disabled={isDisabled || isLoading || Boolean(success)}
       data-variant={variant}
-      data-loading={loading}
+      data-loading={isLoading}
       data-icon={isIconOnly}
-      data-fullWidth={fullWidth}
-      data-success={Boolean(success) && !loading}
-      onClick={handleClick}
+      data-fullwidth={fullWidth}
+      data-success={Boolean(success) && !isLoading}
+      onClick={onClick}
       className={twMerge(
         buttonVariants({
           color: color,
@@ -126,16 +100,16 @@ export const Button = ({
       {...props}
     >
       {showLoadingSpinner &&
-        loading &&
+        isLoading &&
         (spinner ? (
           spinner
         ) : (
           <div className="animate-spin border-2 border-white group-data-[variant=ghost]:border-black h-4 w-4 rounded-full border-t-transparent group-data-[variant=ghost]:border-t-transparent group-data-[variant=ghost]:border-opacity-70"></div>
         ))}
       {startContent && <span>{startContent}</span>}
-      {loading && loadingMessage
+      {isLoading && loadingMessage
         ? loadingMessage
-        : success && !loading
+        : success && !isLoading
         ? success
         : children}
       {endContent && <span>{endContent}</span>}
