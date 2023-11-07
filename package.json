@@ -1,7 +1,7 @@
 {
   "name": "sptech-toolkit",
   "private": false,
-  "version": "0.1.14",
+  "version": "0.1.26",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -46,6 +46,6 @@
   ],
   "exports": {
     ".": "./dist/main.js",
-    "./dist/button": "./dist/button/main.js"
+    "./button": "./dist/button/main.js"
   }
 }

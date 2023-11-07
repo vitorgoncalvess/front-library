@@ -1,4 +1,9 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from "react";
+import {
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
@@ -45,7 +50,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   isIconOnly?: boolean;
   isDisabled?: boolean;
   loadingMessage?: string;
-  successMessage?: string;
+  success?: string | null;
   variant?: "ghost" | "base";
   showLoadingSpinner?: boolean;
   size?: "xs" | "sm" | "md" | "lg";
@@ -74,20 +79,41 @@ export const Button = ({
   startContent,
   endContent,
   spinner,
-  successMessage,
+  success,
   isIconOnly = false,
   ...props
 }: Props) => {
+  const [loading, setLoading] = useState(isLoading);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (loading) return;
+
+    setLoading(true);
+    if (onClick) onClick(e);
+  };
+
+  useEffect(() => {
+    if (!isLoading) {
+      setLoading(false);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (success !== undefined || !isLoading) {
+      setLoading(false);
+    }
+  }, [success, isLoading]);
+
   return (
     <button
-      disabled={isDisabled || isLoading}
-      data-disabled={isDisabled || isLoading}
+      disabled={isDisabled || loading || Boolean(success)}
+      data-disabled={isDisabled || loading || success}
       data-variant={variant}
-      data-loading={isLoading}
+      data-loading={loading}
       data-icon={isIconOnly}
       data-fullWidth={fullWidth}
-      data-success={Boolean(successMessage)}
-      onClick={onClick}
+      data-success={Boolean(success) && !loading}
+      onClick={handleClick}
       className={twMerge(
         buttonVariants({
           color: color,
@@ -100,17 +126,17 @@ export const Button = ({
       {...props}
     >
       {showLoadingSpinner &&
-        isLoading &&
+        loading &&
         (spinner ? (
           spinner
         ) : (
           <div className="animate-spin border-2 border-white group-data-[variant=ghost]:border-black h-4 w-4 rounded-full border-t-transparent group-data-[variant=ghost]:border-t-transparent group-data-[variant=ghost]:border-opacity-70"></div>
         ))}
       {startContent && <span>{startContent}</span>}
-      {isLoading && loadingMessage
+      {loading && loadingMessage
         ? loadingMessage
-        : successMessage
-        ? successMessage
+        : success && !loading
+        ? success
         : children}
       {endContent && <span>{endContent}</span>}
     </button>
