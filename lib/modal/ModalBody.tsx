@@ -1,9 +1,12 @@
+import { twMerge } from "tailwind-merge";
+
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
 };
 
-const ModalBody = ({ children }: Props) => {
-  return <div>{children}</div>;
+const ModalBody = ({ children, className }: Props) => {
+  return <div className={twMerge("w-full", className)}>{children}</div>;
 };
 
 export default ModalBody;

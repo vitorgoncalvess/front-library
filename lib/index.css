@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .modal-enter {
+    animation: modal-enter 0.07s forwards linear;
+  }
+
+  .modal-exit {
+    animation: modal-exit 0.07s forwards linear;
+  }
+
+  .modal-content-enter {
+    animation: modal-content-enter 0.15s forwards linear;
+  }
+
+  .modal-content-exit {
+    animation: modal-content-exit 0.05s forwards linear;
+  }
+
+  @keyframes modal-enter {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-exit {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modal-content-enter {
+    from {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+    to {
+      transform: initial;
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-content-exit {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+  }
+}
