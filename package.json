@@ -1,7 +1,7 @@
 {
   "name": "vgs-ui",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -46,6 +46,7 @@
   ],
   "exports": {
     ".": "./dist/main.js",
-    "./button": "./dist/button/main.js"
+    "./button": "./dist/button/main.js",
+    "./modal": "./dist/modal/main.js"
   }
 }

@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-const ModalHeader = ({ children, className }: Props) => {
+export const ModalHeader = ({ children, className }: Props) => {
   const { onOpenChange, classNames, exitButton = true } = useModal();
   return (
     <div
@@ -33,5 +33,3 @@ const ModalHeader = ({ children, className }: Props) => {
     </div>
   );
 };
-
-export default ModalHeader;

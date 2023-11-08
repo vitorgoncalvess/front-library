@@ -64,7 +64,7 @@ const modalVariants = tv({
   },
 });
 
-const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
+export const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
   const [fade, setFade] = useState(false);
   const [open, setOpen] = useState(isOpen);
 
@@ -95,5 +95,3 @@ const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
       </ModalContext.Provider>
     );
 };
-
-export default Modal;

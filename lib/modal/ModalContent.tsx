@@ -32,7 +32,7 @@ const modalVariants = tv({
   },
 });
 
-const ModalContent = ({ children }: Props) => {
+export const ModalContent = ({ children }: Props) => {
   const {
     onOpenChange,
     size = "sm",
@@ -63,5 +63,3 @@ const ModalContent = ({ children }: Props) => {
     </div>
   );
 };
-
-export default ModalContent;
