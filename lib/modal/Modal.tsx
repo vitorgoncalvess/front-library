@@ -74,7 +74,7 @@ export const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
       setFade(true);
       setTimeout(() => {
         setOpen(false);
-      }, 70);
+      }, 200);
     } else {
       setOpen(true);
     }
