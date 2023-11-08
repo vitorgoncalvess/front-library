@@ -80,6 +80,20 @@ export const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    function closeModal(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        onOpenChange?.();
+      }
+    }
+
+    window.addEventListener("keydown", closeModal);
+
+    return () => {
+      window.removeEventListener("keydown", closeModal);
+    };
+  }, [onOpenChange]);
+
   if (open)
     return (
       <ModalContext.Provider value={{ isOpen, onOpenChange, fade, ...props }}>

@@ -21,7 +21,7 @@ export const ModalHeader = ({ children, className }: Props) => {
       {exitButton && (
         <Button
           className={twMerge(
-            "w-7 h-7 font-medium absolute top-2 right-2",
+            "w-7 h-7 font-medium absolute top-2 right-2 bg-zinc-200",
             classNames?.exitButton
           )}
           onClick={onOpenChange}
