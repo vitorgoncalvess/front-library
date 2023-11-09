@@ -94,11 +94,16 @@ export const Modal = ({ isOpen, onOpenChange, children, ...props }: Props) => {
     };
   }, [onOpenChange]);
 
+  function handleClickOutside(e: React.MouseEvent) {
+    if (e.target === e.currentTarget) onOpenChange?.();
+  }
+
   if (open)
     return (
       <ModalContext.Provider value={{ isOpen, onOpenChange, fade, ...props }}>
         <div
           {...props}
+          onClick={handleClickOutside}
           className={modalVariants({
             exit: fade,
             position: props.position || "center",
