@@ -3,7 +3,6 @@
 
 import { useEffect } from "react";
 import { Column } from "./Table";
-import TableRow from "./TableRow";
 import useTable from "./useTable";
 
 type Props = {
@@ -20,11 +19,7 @@ export const TableHead = ({ columns, children }: Props) => {
 
   return (
     <thead>
-      {columns ? (
-        <TableRow>{columns.map((col) => children(col))}</TableRow>
-      ) : (
-        children
-      )}
+      {columns ? <tr>{columns.map((col) => children(col))}</tr> : children}
     </thead>
   );
 };
