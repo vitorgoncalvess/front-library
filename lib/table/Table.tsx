@@ -41,7 +41,7 @@ const tableClasses = tv({
   },
 });
 
-const Table = ({ children, classNames }: Props) => {
+export const Table = ({ children, classNames }: Props) => {
   const [columns, setColumns] = useState([]);
   const [index, setIndex] = useState(0);
 

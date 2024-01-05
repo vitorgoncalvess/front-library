@@ -11,7 +11,7 @@ type Props = {
   children?: React.ReactNode | ((col: Column) => React.ReactNode);
 };
 
-const TableHead = ({ columns, children }: Props) => {
+export const TableHead = ({ columns, children }: Props) => {
   const { setColumns } = useTable();
 
   useEffect(() => {

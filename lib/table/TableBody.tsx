@@ -9,7 +9,7 @@ type Props<T> = {
   emptyContent?: string | React.ReactNode;
 };
 
-const TableBody = <T extends object>({
+export const TableBody = <T extends object>({
   items,
   children,
   emptyContent,

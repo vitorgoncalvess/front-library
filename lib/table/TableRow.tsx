@@ -5,7 +5,7 @@ type Props = {
   children?: React.ReactNode | ((colKey: string) => React.ReactNode);
 };
 
-const TableRow = ({ children }: Props) => {
+export const TableRow = ({ children }: Props) => {
   const { columns, next } = useTable();
 
   useEffect(() => {

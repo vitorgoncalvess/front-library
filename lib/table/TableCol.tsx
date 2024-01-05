@@ -4,7 +4,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const TableCol = ({ children }: Props) => {
+export const TableCol = ({ children }: Props) => {
   const { tableClasses } = useTable();
 
   const { col } = tableClasses();
