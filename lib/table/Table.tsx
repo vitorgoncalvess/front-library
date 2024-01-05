@@ -4,11 +4,14 @@ import { tv } from "tailwind-variants";
 
 type Props = {
   children: React.ReactNode;
-  classNames?: {
-    base: string;
-    tr: string;
-    td: string;
-  };
+  classNames?: ClassNames;
+};
+
+type ClassNames = {
+  base?: string;
+  th?: string;
+  td?: string;
+  tr?: string;
 };
 
 export type Column = {
@@ -23,6 +26,7 @@ type TableContext = {
   next: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tableClasses: any;
+  classNames?: ClassNames;
 };
 
 export const TableContext = createContext<TableContext>({
@@ -31,6 +35,7 @@ export const TableContext = createContext<TableContext>({
   setColumns: () => {},
   next: () => {},
   tableClasses: () => {},
+  classNames: {},
 });
 
 const tableClasses = tv({
@@ -55,7 +60,7 @@ export const Table = ({ children, classNames }: Props) => {
     <div className={twMerge(base(), classNames?.base)}>
       <table className="w-full">
         <TableContext.Provider
-          value={{ columns, setColumns, index, next, tableClasses }}
+          value={{ columns, setColumns, index, next, tableClasses, classNames }}
         >
           {children}
         </TableContext.Provider>

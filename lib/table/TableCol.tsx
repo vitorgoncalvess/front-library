@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import useTable from "./useTable";
 
 type Props = {
@@ -5,11 +6,11 @@ type Props = {
 };
 
 export const TableCol = ({ children }: Props) => {
-  const { tableClasses } = useTable();
+  const { tableClasses, classNames } = useTable();
 
   const { col } = tableClasses();
 
-  return <th className={col()}>{children}</th>;
+  return <th className={twMerge(col(), classNames?.th)}>{children}</th>;
 };
 
 export default TableCol;

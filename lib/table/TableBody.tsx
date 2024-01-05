@@ -2,6 +2,7 @@
 //@ts-nocheck
 
 import useTable from "./useTable";
+import React from "react";
 
 type Props<T> = {
   items?: T[];
@@ -16,11 +17,9 @@ export const TableBody = <T extends object>({
 }: Props<T>) => {
   const { columns } = useTable();
 
-  console.log(columns);
-
   return (
     <tbody>
-      {items
+      {items && children
         ? items.length
           ? items.map((item, i) => children(item, i))
           : emptyContent && (
