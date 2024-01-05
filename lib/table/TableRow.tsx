@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useTable from "./useTable";
 
 type Props = {
@@ -7,11 +6,7 @@ type Props = {
 };
 
 export const TableRow = ({ children, onClick, ...props }: Props) => {
-  const { columns, next, classNames } = useTable();
-
-  useEffect(() => {
-    next();
-  }, []); //eslint-disable-line
+  const { columns, classNames } = useTable();
 
   return (
     <tr {...props} className={classNames?.tr} onClick={onClick}>

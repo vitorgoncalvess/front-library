@@ -21,9 +21,7 @@ export type Column = {
 
 type TableContext = {
   columns?: Column[];
-  index: number;
   setColumns: Dispatch<SetStateAction<never[]>>;
-  next: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tableClasses: any;
   classNames?: ClassNames;
@@ -31,9 +29,7 @@ type TableContext = {
 
 export const TableContext = createContext<TableContext>({
   columns: [],
-  index: 0,
   setColumns: () => {},
-  next: () => {},
   tableClasses: () => {},
   classNames: {},
 });
@@ -48,11 +44,6 @@ const tableClasses = tv({
 
 export const Table = ({ children, classNames }: Props) => {
   const [columns, setColumns] = useState([]);
-  const [index, setIndex] = useState(0);
-
-  const next = () => {
-    setIndex(index + 1);
-  };
 
   const { base } = tableClasses();
 
@@ -60,7 +51,7 @@ export const Table = ({ children, classNames }: Props) => {
     <div className={twMerge(base(), classNames?.base)}>
       <table className="w-full">
         <TableContext.Provider
-          value={{ columns, setColumns, index, next, tableClasses, classNames }}
+          value={{ columns, setColumns, tableClasses, classNames }}
         >
           {children}
         </TableContext.Provider>
