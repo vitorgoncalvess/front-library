@@ -14,13 +14,13 @@ type ClassNames = {
   tr?: string;
 };
 
-export type Column = {
+export type Column<T> = {
   label: string;
-  key: string;
+  key: keyof T;
 };
 
 type TableContext = {
-  columns?: Column[];
+  columns?: Column<unknown>[];
   setColumns: Dispatch<SetStateAction<never[]>>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tableClasses: any;

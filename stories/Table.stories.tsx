@@ -66,4 +66,41 @@ export const NoContent = {
   },
 };
 
+const normalizeCpf = (cpf: string) => {
+  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+};
+
+type Item = (typeof items)[0];
+
+const customRow = (item: Item, colKey: string) => {
+  const content = item[colKey as keyof Item];
+  switch (colKey) {
+    case "cpf":
+      return normalizeCpf("" + content);
+    default:
+      return content;
+  }
+};
+
+export const CustomRow = {
+  args: {
+    children: (
+      <>
+        <TableHead columns={columns}>
+          {(col) => <TableCol key={col.key}>{col.label}</TableCol>}
+        </TableHead>
+        <TableBody items={items}>
+          {(item) => (
+            <TableRow key={item.cpf}>
+              {(colKey) => (
+                <TableCell key={colKey}>{customRow(item, colKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </>
+    ),
+  },
+};
+
 export default meta;
