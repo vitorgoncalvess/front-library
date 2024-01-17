@@ -15,15 +15,16 @@ type Props = {
     label?: string;
     input?: string;
   };
+  description: string;
   onChange?: (e: unknown) => void;
 };
 
 const InputVariants = tv({
   slots: {
-    base: "flex flex-col-reverse gap-1 max-w-[400px]",
+    base: "flex flex-col-reverse gap-1",
     label: "flex text-xs font-medium text-zinc-600 flex gap-1",
     input:
-      "border-2 border-zinc-200 h-14 rounded-lg p-2 text-sm bg-zinc-200 max-w-[400px] outline-none hover:bg-zinc-300 hover:border-zinc-300 focus:border-zinc-300  focus:bg-zinc-300 transition peer",
+      "border-2 border-zinc-200 h-14 rounded-lg p-2 text-sm bg-zinc-200 outline-none hover:bg-zinc-300 hover:border-zinc-300 focus:border-zinc-300  focus:bg-zinc-300 transition peer",
     end: "absolute right-4",
   },
   variants: {
@@ -58,6 +59,7 @@ export const Input = ({
   placeholder = "",
   endContent,
   classNames,
+  description,
   onChange,
 }: Props) => {
   const {
@@ -69,6 +71,7 @@ export const Input = ({
 
   return (
     <div className={twMerge(base(), classNames?.base)}>
+      {description && <span className="text-xs opacity-70">{description}</span>}
       <input
         placeholder={placeholder}
         id={name || label}
