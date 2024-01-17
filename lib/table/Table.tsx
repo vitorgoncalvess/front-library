@@ -5,6 +5,7 @@ import { tv } from "tailwind-variants";
 type Props = {
   children: React.ReactNode;
   classNames?: ClassNames;
+  topContent: React.ReactNode;
 };
 
 type ClassNames = {
@@ -36,19 +37,20 @@ export const TableContext = createContext<TableContext>({
 
 const tableClasses = tv({
   slots: {
-    base: "w-full p-4 bg-zinc-100 rounded-lg",
+    base: "w-full p-4 bg-zinc-100 rounded-lg flex flex-col gap-4",
     col: "text-start first-of-type:rounded-l-md last-of-type:rounded-r-md p-2 text-sm font-bold bg-zinc-200 text-zinc-500",
     cell: "p-2 text-sm font-medium",
   },
 });
 
-export const Table = ({ children, classNames }: Props) => {
+export const Table = ({ children, classNames, topContent }: Props) => {
   const [columns, setColumns] = useState([]);
 
   const { base } = tableClasses();
 
   return (
     <div className={twMerge(base(), classNames?.base)}>
+      {topContent}
       <table className="w-full">
         <TableContext.Provider
           value={{ columns, setColumns, tableClasses, classNames }}

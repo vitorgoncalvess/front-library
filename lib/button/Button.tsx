@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariants = tv({
-  base: "rounded-xl group bg-zinc-200 px-4 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullwidth=true]:w-full data-[success=true]:bg-emerald-400",
+  base: "rounded-xl group bg-zinc-200 px-6 py-2 box-border flex items-center justify-center gap-2 [&>img]:max-h-[30px] [&>span>img]:max-h-[30px] data-[icon=true]:p-2 transition data-[disabled=false]:data-[loading=false]:active:scale-95 data-[fullwidth=true]:w-full data-[success=true]:bg-emerald-400",
   variants: {
     color: {
       default: "",
