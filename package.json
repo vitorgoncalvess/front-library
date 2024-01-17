@@ -1,7 +1,7 @@
 {
   "name": "vgs-ui",
   "private": false,
-  "version": "0.4.6",
+  "version": "0.4.7",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
@@ -60,6 +60,7 @@
     ".": "./dist/main.js",
     "./button": "./dist/button/main.js",
     "./modal": "./dist/modal/main.js",
-    "./table": "./dist/table/main.js"
+    "./table": "./dist/table/main.js",
+    "./input": "./dist/input/main.js"
   }
 }

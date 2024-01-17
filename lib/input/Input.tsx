@@ -42,7 +42,7 @@ const InputVariants = tv({
   },
 });
 
-const Input = ({
+export const Input = ({
   label,
   name,
   value,
