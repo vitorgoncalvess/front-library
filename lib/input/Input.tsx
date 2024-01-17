@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 type Props = {
@@ -9,6 +10,11 @@ type Props = {
   type?: "password" | "email" | "text";
   placeholder?: string;
   endContent?: React.ReactNode;
+  classNames?: {
+    base?: string;
+    label?: string;
+    input?: string;
+  };
   onChange?: (e: unknown) => void;
 };
 
@@ -51,6 +57,7 @@ export const Input = ({
   type = "text",
   placeholder = "",
   endContent,
+  classNames,
   onChange,
 }: Props) => {
   const {
@@ -61,17 +68,20 @@ export const Input = ({
   } = InputVariants({ labelPlacement, placeholder: Boolean(placeholder) });
 
   return (
-    <div className={base()}>
+    <div className={twMerge(base(), classNames?.base)}>
       <input
         placeholder={placeholder}
         id={name || label}
         value={value}
         onChange={onChange}
-        className={input()}
+        className={twMerge(input(), classNames?.input)}
         name={name || label}
         type={type}
       />
-      <label className={labelClass()} htmlFor={name || label}>
+      <label
+        className={twMerge(labelClass(), classNames?.label)}
+        htmlFor={name || label}
+      >
         {labelIcon}
         <span>{label}</span>
       </label>
