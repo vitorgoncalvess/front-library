@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 type Props = {
   children: React.ReactNode;
   classNames?: ClassNames;
-  topContent: React.ReactNode;
+  topContent?: React.ReactNode;
 };
 
 type ClassNames = {

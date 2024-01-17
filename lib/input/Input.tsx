@@ -1,15 +1,15 @@
 import { tv } from "tailwind-variants";
 
 type Props = {
-  label: string;
-  value: string | number;
-  name: string;
-  labelPlacement: "top" | "left" | "inside";
-  labelIcon: React.ReactNode;
-  type: "password" | "email" | "text";
-  placeholder: string;
-  endContent: React.ReactNode;
-  onChange: (e: unknown) => void;
+  label?: string;
+  value?: string | number;
+  name?: string;
+  labelPlacement?: "top" | "left" | "inside";
+  labelIcon?: React.ReactNode;
+  type?: "password" | "email" | "text";
+  placeholder?: string;
+  endContent?: React.ReactNode;
+  onChange?: (e: unknown) => void;
 };
 
 const InputVariants = tv({
@@ -60,17 +60,13 @@ export const Input = ({
     end,
   } = InputVariants({ labelPlacement, placeholder: Boolean(placeholder) });
 
-  const handleChange = (e: unknown) => {
-    onChange(e);
-  };
-
   return (
     <div className={base()}>
       <input
         placeholder={placeholder}
         id={name || label}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         className={input()}
         name={name || label}
         type={type}
