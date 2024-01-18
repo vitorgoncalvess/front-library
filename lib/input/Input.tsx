@@ -16,7 +16,7 @@ type Props = {
     input?: string;
     description?: string;
   };
-  description?: string;
+  description?: string | React.ReactNode;
   onChange?: (e: unknown) => void;
 };
 

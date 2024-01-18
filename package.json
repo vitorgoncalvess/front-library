@@ -1,7 +1,7 @@
 {
   "name": "vgs-ui",
   "private": false,
-  "version": "0.5.4",
+  "version": "0.5.5",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
