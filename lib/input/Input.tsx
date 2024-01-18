@@ -31,7 +31,7 @@ const InputVariants = tv({
     labelPlacement: {
       inside: {
         label:
-          "absolute left-4 group-hover:-translate-y-3 group-hover:-translate-x-1.5 transition duration-300 peer-focus:-translate-y-3 peer-focus:-translate-x-1.5 peer-[&:not(:placeholder-shown)]:-translate-y-3 peer-[&:not(:placeholder-shown)]:-translate-x-1.5",
+          "absolute left-4 group-hover:-translate-y-3 group-hover:-translate-x-1.5 transition duration-300 peer-focus:-translate-y-3 peer-focus:-translate-x-1.5 peer-[&:not(:placeholder-shown)]:-translate-y-3 peer-[&:not(:placeholder-shown)]:-translate-x-1.5 peer-hover:scale-90 peer-focus:scale-90 peer-[&:not(:placeholder-shown)]:scale-90",
         base: "relative flex justify-center group",
         input: "pt-5",
       },
