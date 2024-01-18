@@ -14,6 +14,7 @@ type Props = {
     base?: string;
     label?: string;
     input?: string;
+    description?: string;
   };
   description?: string;
   onChange?: (e: unknown) => void;
@@ -92,7 +93,11 @@ export const Input = ({
         {labelIcon}
         <span>{label}</span>
       </label>
-      {endContent && <div className={end()}>{endContent}</div>}
+      {endContent && (
+        <div className={twMerge(end(), classNames?.description)}>
+          {endContent}
+        </div>
+      )}
     </div>
   );
 };
