@@ -73,7 +73,12 @@ export const Input = ({
   return (
     <div className={twMerge(base(), classNames?.base)}>
       {description && (
-        <span className="text-xs opacity-70 absolute -bottom-4 left-0.5">
+        <span
+          className={twMerge(
+            "text-xs opacity-70 absolute -bottom-4 left-0.5",
+            classNames?.description
+          )}
+        >
           {description}
         </span>
       )}
@@ -93,11 +98,7 @@ export const Input = ({
         {labelIcon}
         <span>{label}</span>
       </label>
-      {endContent && (
-        <div className={twMerge(end(), classNames?.description)}>
-          {endContent}
-        </div>
-      )}
+      {endContent && <div className={end()}>{endContent}</div>}
     </div>
   );
 };
