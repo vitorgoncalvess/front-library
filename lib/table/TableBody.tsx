@@ -23,21 +23,25 @@ export const TableBody = <T extends object>({
         ? items.length
           ? items.map((item, i) => children(item, i))
           : emptyContent && (
+              <tr>
+                <td
+                  colSpan={columns?.length}
+                  className="align-middle text-center h-40 font-medium opacity-30"
+                >
+                  {emptyContent}
+                </td>
+              </tr>
+            )
+        : emptyContent
+        ? emptyContent && (
+            <tr>
               <td
                 colSpan={columns?.length}
                 className="align-middle text-center h-40 font-medium opacity-30"
               >
                 {emptyContent}
               </td>
-            )
-        : emptyContent
-        ? emptyContent && (
-            <td
-              colSpan={columns?.length}
-              className="align-middle text-center h-40 font-medium opacity-30"
-            >
-              {emptyContent}
-            </td>
+            </tr>
           )
         : children}
     </tbody>
